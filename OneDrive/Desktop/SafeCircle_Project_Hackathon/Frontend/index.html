@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeCircle - Women Safety & Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #0099cc;
+            --danger: #ff3366;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --light: #f0f8ff;
+            --dark: #0a1428;
+            --neon-purple: #b300ff;
+            --neon-blue: #00d4ff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1428 0%, #1a2f5a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        /* Enhanced Header with Modern Design */
+        .header {
+            background: rgba(10, 20, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .header-btn {
+            padding: 8px 12px;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .header-btn.active {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-logout {
+            padding: 8px 15px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: #ff1a50;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+        }
+
+        /* Main Container */
+        .container {
+            flex: 1;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            align-items: start;
+        }
+
+        /* Modern Card Styles with Glow */
+        .card {
+            background: rgba(20, 40, 80, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Safety Status Card */
+        .safety-status {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            padding: 15px;
+        }
+
+        .status-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .status-indicator {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 0 20px;
+        }
+
+        .status-safe {
+            background: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+            color: var(--success);
+        }
+
+        .status-moderate {
+            background: rgba(255, 170, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.6);
+            color: var(--warning);
+        }
+
+        .status-danger {
+            background: rgba(255, 51, 102, 0.2);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
+            color: var(--danger);
+        }
+
+        .status-info {
+            flex: 1;
+        }
+
+        .status-label {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .status-detail {
+            font-size: 13px;
+            color: #a0c4ff;
+            line-height: 1.5;
+        }
+
+        /* SOS Button - Enhanced with Smart Features */
+        .sos-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.15) 0%, rgba(255, 20, 60, 0.1) 100%);
+            border: 2px solid var(--danger);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sos-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 51, 102, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: pulse 20s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        .sos-header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .sos-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+        }
+
+        .sos-subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            color: #ffaacc;
+        }
+
+        .sos-button {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--danger), #ff1a50);
+            border: 6px solid rgba(255, 51, 102, 0.3);
+            font-size: 56px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.6), 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            animation: sos-blink 0.8s infinite;
+        }
+
+        @keyframes sos-blink {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(255, 51, 102, 0.6), 0 10px 30px rgba(0, 0, 0, 0.5); 
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 50px rgba(255, 51, 102, 1), 0 10px 40px rgba(0, 0, 0, 0.5); 
+                transform: scale(1.05);
+            }
+        }
+
+        .sos-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 60px rgba(255, 51, 102, 1), 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .sos-button:active {
+            transform: scale(0.95);
+        }
+
+        .sos-countdown {
+            position: relative;
+            z-index: 2;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #ffaacc;
+            min-height: 20px;
+        }
+
+        .countdown-timer {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--danger);
+            animation: pulse-text 1s infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .sos-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sos-option-btn {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .sos-option-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: #a0c4ff;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Safety Score Meter */
+        .safety-meter {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .meter-label {
+            font-size: 12px;
+            color: #a0c4ff;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .meter-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), var(--primary));
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            animation: meter-pulse 2s infinite;
+        }
+
+        @keyframes meter-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.8); }
+        }
+
+        /* Risk Map Card - Enhanced */
+        .risk-map {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(179, 0, 255, 0.1) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0c4ff;
+            font-size: 13px;
+            margin: 15px 0;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .risk-map-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+
+        .risk-map-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Risk Level Badge */
+        .risk-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px;
+        }
+
+        .risk-low { 
+            background: rgba(0, 255, 136, 0.2); 
+            color: var(--success);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+        }
+
+        .risk-medium { 
+            background: rgba(255, 170, 0, 0.2); 
+            color: var(--warning);
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.4);
+        }
+
+        .risk-high { 
+            background: rgba(255, 51, 102, 0.2); 
+            color: #ff6699;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.4);
+        }
+
+        .risk-critical { 
+            background: rgba(255, 20, 60, 0.2); 
+            color: var(--danger);
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.6);
+            animation: critical-pulse 0.8s infinite;
+        }
+
+        @keyframes critical-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Button Styles - Enhanced */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-success {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .btn-success:hover {
+            background: rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-danger {
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 51, 102, 0.3);
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+        }
+
+        .btn-block {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Form Styles - Modern */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: inherit;
+            background: rgba(20, 40, 80, 0.5);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(160, 196, 255, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+            background: rgba(20, 40, 80, 0.8);
+        }
+
+        /* List Styles - Enhanced */
+        .list-item {
+            padding: 12px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item:hover {
+            background: rgba(0, 212, 255, 0.05);
+            padding-left: 15px;
+        }
+
+        .list-item-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .list-item-meta {
+            font-size: 11px;
+            color: #a0c4ff;
+            margin-top: 3px;
+        }
+
+        /* Modal Styles - Enhanced */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(10, 20, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
+            animation: slideDown 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: white;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary);
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Community Network - Enhanced */
+        .report-item {
+            padding: 15px;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .report-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-left-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .report-location {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        .report-description {
+            font-size: 13px;
+            color: #a0c4ff;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+
+        .report-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .report-actions button {
+            padding: 6px 12px;
+            font-size: 11px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .report-actions button:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Quick Contacts - Enhanced */
+        .quick-contacts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quick-contact-btn {
+            padding: 12px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .quick-contact-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .quick-contact-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Night Mode Button */
+        .night-mode-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(179, 0, 255, 0.2);
+            border: 1px solid var(--neon-purple);
+            border-radius: 20px;
+            color: var(--neon-purple);
+            font-size: 11px;
+            font-weight: 600;
+            animation: glow-pulse 2s infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(179, 0, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(179, 0, 255, 0.6); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sos-button {
+                width: 130px;
+                height: 130px;
+                font-size: 40px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .header {
+                flex-wrap: wrap;
+            }
+
+            .user-menu {
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 10px;
+            }
+
+            .status-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Status Indicators - Enhanced */
+        .status-badge {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-active { 
+            background: var(--success);
+            box-shadow: 0 0 10px var(--success);
+            animation: pulse-active 1s infinite;
+        }
+        .status-inactive { background: #4a5568; }
+        .status-resolving { 
+            background: var(--warning);
+            box-shadow: 0 0 10px var(--warning);
+            animation: pulse-active 0.8s infinite;
+        }
+
+        @keyframes pulse-active {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Safe Zone Indicators */
+        .zone-safe {
+            color: var(--success);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .zone-danger {
+            color: var(--danger);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Alert Styles - Modern */
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+            border-left: 4px solid;
+            background-size: 20px 20px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .alert.active {
+            display: block;
+        }
+
+        .alert-success {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+            border-left-color: var(--success);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+
+        .alert-error {
+            background: rgba(255, 51, 102, 0.1);
+            color: var(--danger);
+            border-left-color: var(--danger);
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.2);
+        }
+
+        .alert-warning {
+            background: rgba(255, 170, 0, 0.1);
+            color: var(--warning);
+            border-left-color: var(--warning);
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.2);
+        }
+
+        /* Travel Mode Indicator */
+        .travel-mode-active {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border: 2px dashed var(--success);
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .travel-mode-label {
+            font-weight: 600;
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .travel-mode-label::before {
+            content: '🚩';
+            font-size: 16px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <span class="logo-icon">🛡️</span>
+            <span>SafeCircle</span>
+        </div>
+        <div class="header-actions">
+            <button class="header-btn" onclick="toggleNightMode()" title="Toggle Night Safety Mode">🌙 Night Mode</button>
+            <button class="header-btn" onclick="toggleTravelMode()" title="Share live location during travel">🚗 Travel Mode</button>
+            <button class="header-btn" onclick="showHelp()" title="Quick Help">❓ Help</button>
+            <button class="header-btn" id="locationToggle" onclick="toggleLiveLocation()" title="Toggle Live Location">📍 Location</button>
+            <button class="header-btn" onclick="toggleSilentMode()" title="Silent SOS - Send without sound">🔇 Silent</button>
+        </div>
+        <div class="user-menu">
+            <div class="user-info" id="userInfo" style="display:none;">
+                <div class="user-avatar" id="userInitial">S</div>
+                <div>
+                    <div id="userName" style="font-weight: bold;">User</div>
+                    <div id="userEmail" style="font-size: 11px; color: #a0c4ff;">email@example.com</div>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="logout()" id="logoutBtn" style="display:none;">Logout</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" id="mainContainer">
+        <!-- Travel Mode Indicator -->
+        <div id="travelModeIndicator" class="travel-mode-active" style="grid-column: 1 / -1; display: none;">
+            <div class="travel-mode-label">
+                Live Location Sharing Active - Your trusted contacts are tracking your journey
+            </div>
+            <button class="btn btn-secondary" onclick="toggleTravelMode()" style="padding: 6px 12px; font-size: 12px;">Stop</button>
+        </div>
+
+        <!-- Safety Status Card -->
+        <div id="safetyStatus" class="card safety-status" style="grid-column: 1 / -1;">
+            <div class="status-container">
+                <div class="status-indicator status-safe" id="statusEmoji">✓</div>
+                <div class="status-info">
+                    <div class="status-label" id="statusLabel">You Are Safe</div>
+                    <div class="status-detail" id="statusDetail">
+                        ✓ No incidents reported nearby<br>
+                        ✓ Police station 0.5 km away<br>
+                        ✓ Community reports: 2 Low-risk
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div style="text-align: center; flex: 1; min-width: 80px;">
+                        <div style="font-size: 20px; color: var(--success);">78%</div>
+                        <div style="font-size: 11px; color: #a0c4ff;">Safety Score</div>
+                    </div>
+                    <div style="text-align: center; flex: 1; min-width: 80px;">
+                        <div style="font-size: 20px; color: var(--primary);">3</div>
+                        <div style="font-size: 11px; color: #a0c4ff;">Safe Zones Nearby</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOS Emergency Card - Enhanced -->
+        <div class="card sos-card">
+            <div class="sos-header">
+                <div class="sos-title">🆘 WOMEN SAFETY EMERGENCY</div>
+                <div class="sos-subtitle">Press or Shake (3x) Phone to Send Emergency Alert</div>
+            </div>
+            <button class="sos-button" id="sosButton" onclick="triggerSOS()" title="Press to send SOS">🆘</button>
+            <div class="sos-countdown" id="sosCountdown"></div>
+            <div class="sos-options">
+                <button class="sos-option-btn" onclick="showModal('voiceSOSModal')">🎤 Voice SOS</button>
+                <button class="sos-option-btn" onclick="startSOSCountdown()">⏱️ Countdown</button>
+                <button class="sos-option-btn" onclick="showModal('addMoreContactsModal')">👥 Contacts</button>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>📊 Dashboard & Analytics</h2>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('incidents')">📍 My Incidents</button>
+                <button class="tab-btn" onclick="switchTab('community')">👥 Community</button>
+                <button class="tab-btn" onclick="switchTab('safe-zones')">🏥 Safe Zones</button>
+                <button class="tab-btn" onclick="switchTab('timeline')">📈 Timeline</button>
+            </div>
+
+            <!-- My Incidents Tab -->
+            <div id="incidents" class="tab-content active">
+                <div id="incidentsContainer">
+                    <p style="color: #a0c4ff; text-align: center; padding: 20px;">No incidents yet. You are safe! ✓</p>
+                </div>
+            </div>
+
+            <!-- Community Reports Tab -->
+            <div id="community" class="tab-content">
+                <button class="btn btn-primary btn-block" onclick="showModal('createReportModal')">📝 Create Safety Report</button>
+                <div id="communityContainer" style="margin-top: 15px;">
+                    <p style="color: #a0c4ff; text-align: center; padding: 20px;">No reports available</p>
+                </div>
+            </div>
+
+            <!-- Safe Zones Tab -->
+            <div id="safe-zones" class="tab-content">
+                <div class="risk-map">
+                    <div class="risk-map-grid"></div>
+                    <div class="risk-map-content">🗺️ Map View - Nearby Safe Zones & Risk Analysis</div>
+                </div>
+                <div id="safeZonesContainer"></div>
+            </div>
+
+            <!-- Timeline Tab -->
+            <div id="timeline" class="tab-content">
+                <div style="background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 8px; border-left: 3px solid var(--primary);">
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 10px;">📅 Recent Activity Timeline</div>
+                    <div id="timelineContainer" style="font-size: 13px; color: #a0c4ff; line-height: 1.8;">
+                        <p>No activity yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Contacts -->
+        <div class="card">
+            <h2>📞 Quick Emergency Access</h2>
+            <div class="quick-contacts">
+                <button class="quick-contact-btn" onclick="quickCall('100', 'Police')">
+                    <div class="quick-contact-icon">🚔</div>
+                    <div>Police</div>
+                </button>
+                <button class="quick-contact-btn" onclick="quickCall('102', 'Ambulance')">
+                    <div class="quick-contact-icon">🚑</div>
+                    <div>Ambulance</div>
+                </button>
+                <button class="quick-contact-btn" onclick="quickCall('1091', 'Women Helpline')">
+                    <div class="quick-contact-icon">👩‍⚖️</div>
+                    <div>Helpline</div>
+                </button>
+                <button class="quick-contact-btn" onclick="showModal('addMoreContactsModal')">
+                    <div class="quick-contact-icon">➕</div>
+                    <div>My Contacts</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Emergency Contacts -->
+        <div class="card">
+            <h2>👥 Emergency Contacts</h2>
+            <button class="btn btn-primary btn-block" onclick="showModal('addContactModal')">➕ Add Contact</button>
+            <div id="contactsContainer" style="margin-top: 15px;">
+                <p style="color: #a0c4ff; text-align: center;">No emergency contacts added</p>
+            </div>
+        </div>
+
+        <!-- AI Risk Detection - Enhanced -->
+        <div class="card">
+            <h2>🤖 AI Risk Detection</h2>
+            <div class="safety-meter">
+                <div class="meter-label">
+                    <span>Current Location Safety Score</span>
+                    <span id="riskScore" style="color: var(--success);">78%</span>
+                </div>
+                <div class="meter-bar">
+                    <div class="meter-fill" id="riskMeter" style="width: 78%;"></div>
+                </div>
+            </div>
+            <div style="background: rgba(0, 255, 136, 0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--success); margin-bottom: 10px;">
+                <div style="font-weight: 600; color: var(--success); margin-bottom: 5px;">✓ All Systems Green</div>
+                <div style="font-size: 12px; color: #a0c4ff; line-height: 1.6;">
+                    • No high-risk incidents nearby<br>
+                    • Police response time: ~5 min<br>
+                    • Safe zone: 0.5 km away
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="updateLocation()">🔄 Refresh Location Analysis</button>
+        </div>
+
+        <!-- Community Safety Network -->
+        <div class="card">
+            <h2>🌐 Community Network</h2>
+            <div style="background: rgba(0, 212, 255, 0.05); padding: 12px; border-radius: 8px; margin-bottom: 10px;">
+                <div style="font-size: 12px; color: #a0c4ff; line-height: 1.6;">
+                    <strong style="color: var(--primary);">👥 Connected Women: 1,245</strong><br>
+                    <strong style="color: var(--success);">✓ Reports This Week: 23</strong><br>
+                    <strong style="color: var(--primary);">📍 Safe Routes Shared: 156</strong>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="showModal('createReportModal')">📢 Report Safety Concern</button>
+        </div>
+
+        <!-- Safety Tips & Personalization -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>💡 Personalized Safety Tips</h2>
+            <div id="tipsContainer"></div>
+        </div>
+    </div>
+
+    <!-- Voice SOS Modal -->
+    <div class="modal" id="voiceSOSModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('voiceSOSModal')">×</button>
+            <div class="modal-header">🎤 Voice-Activated SOS</div>
+            <div style="background: rgba(0, 212, 255, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(0, 212, 255, 0.2);">
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <div style="font-size: 48px; animation: pulse 1s infinite;">🎤</div>
+                    <div style="color: var(--primary); font-weight: 600; margin-top: 10px;">Listening...</div>
+                </div>
+                <div style="font-size: 12px; color: #a0c4ff; line-height: 1.6;">
+                    <strong>Try saying:</strong><br>
+                    • "Hey SafeCircle, I need help"<br>
+                    • "SOS"<br>
+                    • "Emergency"
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="triggerSOS(); closeModal('voiceSOSModal')">🚨 Send SOS Immediately</button>
+            <button class="btn btn-secondary btn-block" onclick="closeModal('voiceSOSModal')">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Quick Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('helpModal')">×</button>
+            <div class="modal-header">❓ Quick Help Guide</div>
+            <div style="font-size: 13px; color: #a0c4ff; line-height: 1.8;">
+                <div style="margin-bottom: 15px;">
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 5px;">🆘 SOS Button</div>
+                    <div>Sends immediate alert to emergency contacts & authorities with your live location.</div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 5px;">🚗 Travel Mode</div>
+                    <div>Automatically shares live location with trusted contacts during your journey.</div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 5px;">🌙 Night Mode</div>
+                    <div>Enhances alert sensitivity & auto-notifies contacts in isolated areas.</div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 5px;">🔇 Silent Mode</div>
+                    <div>Sends SOS without sound - discreet emergency alert.</div>
+                </div>
+                <div>
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 5px;">📝 Community Reports</div>
+                    <div>Share safety concerns anonymously. Help other women stay safe.</div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="closeModal('helpModal')">Got it</button>
+        </div>
+    </div>
+
+    <!-- Add More Contacts Modal -->
+    <div class="modal" id="addMoreContactsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('addMoreContactsModal')">×</button>
+            <div class="modal-header">👥 My Contacts</div>
+            <div id="allContactsContainer" style="margin-bottom: 15px;"></div>
+            <button class="btn btn-primary btn-block" onclick="showModal('addContactModal'); closeModal('addMoreContactsModal')">➕ Add New Contact</button>
+            <button class="btn btn-secondary btn-block" onclick="closeModal('addMoreContactsModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- Login/Registration Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('authModal')">×</button>
+            <div class="modal-header">Welcome to SafeCircle</div>
+            <div class="alert" id="authAlert"></div>
+            
+            <div id="loginForm" class="tab-content active">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="login()">Login</button>
+                <button class="btn btn-secondary btn-block" style="margin-top: 10px;" onclick="switchAuthForm('register')">Create Account</button>
+            </div>
+
+            <div id="registerForm" class="tab-content">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="registerName" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="registerEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="registerPhone" placeholder="+91 98765 43210">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="registerPassword" placeholder="••••••••">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="register()">Create Account</button>
+                <button class="btn btn-secondary btn-block" style="margin-top: 10px;" onclick="switchAuthForm('login')">Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Emergency Contact Modal -->
+    <div class="modal" id="addContactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('addContactModal')">×</button>
+            <div class="modal-header">Add Emergency Contact</div>
+            <div class="form-group">
+                <label>Contact Name</label>
+                <input type="text" id="contactName" placeholder="e.g., Mom, Sister, Friend">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="contactPhone" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+                <label>Relationship</label>
+                <select id="contactRelationship">
+                    <option>Sister</option>
+                    <option>Mother</option>
+                    <option>Friend</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addContact()">Add Contact</button>
+        </div>
+    </div>
+
+    <!-- Create Report Modal -->
+    <div class="modal" id="createReportModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('createReportModal')">×</button>
+            <div class="modal-header">Report Safety Concern</div>
+            <div class="form-group">
+                <label>Risk Level</label>
+                <select id="reportRiskLevel">
+                    <option value="LOW">Low Risk</option>
+                    <option value="MEDIUM" selected>Medium Risk</option>
+                    <option value="HIGH">High Risk</option>
+                    <option value="CRITICAL">Critical</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Incident Type</label>
+                <select id="reportType">
+                    <option value="Harassment">Harassment</option>
+                    <option value="Suspicious Activity">Suspicious Activity</option>
+                    <option value="Poor Lighting">Poor Lighting</option>
+                    <option value="Traffic Concern">Traffic Concern</option>
+                    <option value="Theft/Robbery">Theft/Robbery</option>
+                    <option value="Stalking">Stalking</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="reportDescription" placeholder="Describe the safety concern..." rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="reportAnonymous"> Report Anonymously
+                </label>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="createReport()">Submit Report</button>
+        </div>
+    </div>
+
+    <!-- Success Alert -->
+    <div class="alert alert-success" id="successAlert">
+        <strong>Success!</strong> Operation completed successfully.
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:8080/api';
+        let currentUser = null;
+        let userLocation = null;
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserSession();
+            getSafeZones();
+            loadCommunityReports();
+        });
+
+        // Auth Functions
+        function checkUserSession() {
+            const user = localStorage.getItem('safecircleUser');
+            if (user) {
+                currentUser = JSON.parse(user);
+                showDashboard();
+                loadUserIncidents();
+            } else {
+                showLogin();
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('mainContainer').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'none';
+            document.getElementById('authModal').classList.add('active');
+        }
+
+        function showDashboard() {
+            document.getElementById('mainContainer').style.display = 'grid';
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('logoutBtn').style.display = 'block';
+            document.getElementById('authModal').classList.remove('active');
+            
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userEmail').textContent = currentUser.email;
+                document.getElementById('userInitial').textContent = currentUser.name.charAt(0);
+            }
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showAuthAlert('Please fill all fields', 'error');
+                return;
+            }
+
+            // Mock login
+            currentUser = {
+                userId: 1,
+                name: 'Sweta Jha',
+                email: email,
+                phone: '9876543210',
+                profileImage: null,
+                isActive: true
+            };
+
+            localStorage.setItem('safecircleUser', JSON.stringify(currentUser));
+            showAuthAlert('Login successful!', 'success');
+            setTimeout(showDashboard, 500);
+        }
+
+        function register() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+
+            if (!name || !email || !phone || !password) {
+                showAuthAlert('Please fill all fields', 'error');
+                return;
+            }
+
+            // Mock registration
+            currentUser = {
+                userId: Math.floor(Math.random() * 10000),
+                name: name,
+                email: email,
+                phone: phone,
+                profileImage: null,
+                isActive: true
+            };
+
+            localStorage.setItem('safecircleUser', JSON.stringify(currentUser));
+            showAuthAlert('Registration successful!', 'success');
+            setTimeout(showDashboard, 500);
+        }
+
+        function switchAuthForm(form) {
+            document.getElementById('loginForm').classList.remove('active');
+            document.getElementById('registerForm').classList.remove('active');
+            document.getElementById(form + 'Form').classList.add('active');
+        }
+
+        function logout() {
+            localStorage.removeItem('safecircleUser');
+            currentUser = null;
+            showLogin();
+        }
+
+        function showAuthAlert(message, type) {
+            const alert = document.getElementById('authAlert');
+            alert.textContent = message;
+            alert.className = 'alert active alert-' + type;
+            setTimeout(() => alert.classList.remove('active'), 3000);
+        }
+
+        // SOS Functions
+        function triggerSOS() {
+            if (!currentUser) {
+                alert('Please login first');
+                return;
+            }
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    // Simulate API call
+                    console.log('🆘 SOS TRIGGERED!', {
+                        userId: currentUser.userId,
+                        latitude: latitude,
+                        longitude: longitude,
+                        timestamp: new Date()
+                    });
+
+                    // Simulate sending SMS
+                    console.log('📱 Emergency SMS sent to contacts');
+                    console.log('📞 Emergency services alerted');
+                    console.log('📍 Location shared with contacts');
+
+                    showSuccessAlert('🆘 SOS Activated! Emergency contacts have been alerted.');
+                    
+                    // Add to incidents
+                    addIncident('SOS Emergency', 'active', latitude, longitude);
+                });
+            }
+        }
+
+        // Dashboard Functions
+        function switchTab(tab) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tab).classList.add('active');
+            
+            // Find and activate the clicked button
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes("switchTab('" + tab + "')")) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Fallback: mark the button that was clicked
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+
+        function addContact() {
+            const name = document.getElementById('contactName').value;
+            const phone = document.getElementById('contactPhone').value;
+            const relationship = document.getElementById('contactRelationship').value;
+
+            if (!name || !phone) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const contactsContainer = document.getElementById('contactsContainer');
+            const contactHTML = `
+                <div class="list-item">
+                    <div>
+                        <div class="list-item-title">👤 ${name}</div>
+                        <div class="list-item-meta">${relationship} • ${phone}</div>
+                    </div>
+                    <button class="btn btn-danger" onclick="removeContact(this)">Remove</button>
+                </div>
+            `;
+
+            if (contactsContainer.textContent.includes('No emergency')) {
+                contactsContainer.innerHTML = contactHTML;
+            } else {
+                contactsContainer.innerHTML += contactHTML;
+            }
+
+            closeModal('addContactModal');
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactPhone').value = '';
+            showSuccessAlert('Contact added successfully!');
+        }
+
+        function removeContact(btn) {
+            btn.parentElement.parentElement.remove();
+        }
+
+        function createReport() {
+            const riskLevel = document.getElementById('reportRiskLevel').value;
+            const type = document.getElementById('reportType').value;
+            const description = document.getElementById('reportDescription').value;
+            const anonymous = document.getElementById('reportAnonymous').checked;
+
+            if (!description) {
+                alert('Please describe the concern');
+                return;
+            }
+
+            const report = {
+                riskLevel: riskLevel,
+                type: type,
+                description: description,
+                anonymous: anonymous,
+                location: userLocation || { lat: 28.6139, lng: 77.2090 },
+                timestamp: new Date(),
+                upvotes: 0
+            };
+
+            const communityContainer = document.getElementById('communityContainer');
+            const riskColor = riskLevel.toLowerCase();
+            const reportHTML = `
+                <div class="report-item">
+                    <div class="report-header">
+                        <span class="report-location">📍 ${report.location.lat.toFixed(4)}, ${report.location.lng.toFixed(4)}</span>
+                        <span class="risk-badge risk-${riskColor}">${riskLevel}</span>
+                    </div>
+                    <div style="font-weight: 500; margin-bottom: 5px;">Type: ${type}</div>
+                    <div class="report-description">${description}</div>
+                    <div style="font-size: 12px; color: #718096;">Reported ${anonymous ? 'Anonymously' : 'by ' + currentUser.name}</div>
+                    <div class="report-actions">
+                        <button onclick="upvoteReport(this)">👍 Upvote (${report.upvotes})</button>
+                        <button onclick="shareReport(this)">📢 Share</button>
+                    </div>
+                </div>
+            `;
+
+            if (communityContainer.textContent.includes('No reports')) {
+                communityContainer.innerHTML = reportHTML;
+            } else {
+                communityContainer.innerHTML = reportHTML + communityContainer.innerHTML;
+            }
+
+            closeModal('createReportModal');
+            document.getElementById('reportDescription').value = '';
+            showSuccessAlert('Report submitted successfully!');
+        }
+
+        function upvoteReport(btn) {
+            const votes = parseInt(btn.textContent.match(/\d+/)[0]) + 1;
+            btn.textContent = `👍 Upvote (${votes})`;
+        }
+
+        function shareReport(btn) {
+            alert('Report shared with your network!');
+        }
+
+        function loadCommunityReports() {
+            // Mock community reports
+            const communityContainer = document.getElementById('communityContainer');
+            const mockReports = [
+                { location: 'Near Metro Station', risk: 'medium', type: 'Poor Lighting', upvotes: 12 },
+                { location: 'Market Area', risk: 'high', type: 'Suspicious Activity', upvotes: 8 }
+            ];
+
+            let html = '';
+            mockReports.forEach(report => {
+                html += `
+                    <div class="report-item">
+                        <div class="report-header">
+                            <span class="report-location">📍 ${report.location}</span>
+                            <span class="risk-badge risk-${report.risk}">${report.risk.toUpperCase()}</span>
+                        </div>
+                        <div style="font-weight: 500; margin-bottom: 5px;">Type: ${report.type}</div>
+                        <div class="report-description">Community members have reported ${report.type.toLowerCase()} in this area.</div>
+                        <div class="report-actions">
+                            <button onclick="upvoteReport(this)">👍 Upvote (${report.upvotes})</button>
+                            <button onclick="shareReport(this)">📢 Share</button>
+                        </div>
+                    </div>
+                `;
+            });
+            communityContainer.innerHTML = html;
+        }
+
+        function getSafeZones() {
+            // Mock safe zones
+            const safeZonesContainer = document.getElementById('safeZonesContainer');
+            const zones = [
+                { name: 'Central Police Station', type: '🚔', distance: '0.5 km' },
+                { name: 'City Hospital', type: '🏥', distance: '1.2 km' },
+                { name: 'Metro Station', type: '🚇', distance: '0.8 km' }
+            ];
+
+            let html = '';
+            zones.forEach(zone => {
+                html += `
+                    <div class="list-item">
+                        <div>
+                            <div class="list-item-title">${zone.type} ${zone.name}</div>
+                            <div class="list-item-meta">Distance: ${zone.distance}</div>
+                        </div>
+                        <span class="zone-safe">✓ SAFE</span>
+                    </div>
+                `;
+            });
+            safeZonesContainer.innerHTML = html;
+        }
+
+        function addIncident(title, status, lat, lng) {
+            const incidentsContainer = document.getElementById('incidentsContainer');
+            const incidentHTML = `
+                <div class="list-item">
+                    <div>
+                        <div class="list-item-title">${title}</div>
+                        <div class="list-item-meta">📍 ${lat.toFixed(4)}, ${lng.toFixed(4)} • ${new Date().toLocaleString()}</div>
+                    </div>
+                    <span class="status-badge status-active"></span>
+                </div>
+            `;
+
+            if (incidentsContainer.textContent.includes('No incidents')) {
+                incidentsContainer.innerHTML = incidentHTML;
+            } else {
+                incidentsContainer.innerHTML = incidentHTML + incidentsContainer.innerHTML;
+            }
+        }
+
+        function loadUserIncidents() {
+            // Mock load incidents
+            const incidentsContainer = document.getElementById('incidentsContainer');
+            incidentsContainer.innerHTML = '<p style="color: #718096; text-align: center; padding: 20px;">No incidents yet. You are safe! ✓</p>';
+        }
+
+        function updateLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    showSuccessAlert(`📍 Location Updated: ${userLocation.lat.toFixed(4)}, ${userLocation.lng.toFixed(4)}`);
+                });
+            }
+        }
+
+        // Modal Functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showSuccessAlert(message) {
+            const alert = document.getElementById('successAlert');
+            alert.innerHTML = `<strong>✓</strong> ${message}`;
+            alert.classList.add('active');
+            setTimeout(() => alert.classList.remove('active'), 3000);
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // ==== ENHANCED FEATURES ====
+
+        // Global state variables
+        let nightModeActive = false;
+        let travelModeActive = false;
+        let silentModeActive = false;
+        let liveLocationActive = false;
+        let sosCountdownActive = false;
+
+        // Shake detection for SOS
+        let shakeCount = 0;
+        let lastShakeTime = 0;
+
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', function(event) {
+                const acceleration = event.accelerationIncludingGravity;
+                const x = acceleration.x;
+                const y = acceleration.y;
+                const z = acceleration.z;
+                
+                const shakeThreshold = 25;
+                const currentShake = Math.sqrt(x * x + y * y + z * z);
+                
+                if (currentShake > shakeThreshold) {
+                    const currentTime = new Date().getTime();
+                    if (currentTime - lastShakeTime > 500) {
+                        shakeCount++;
+                        lastShakeTime = currentTime;
+                        
+                        if (shakeCount >= 3) {
+                            triggerSOS();
+                            shakeCount = 0;
+                        }
+                        
+                        setTimeout(() => {
+                            if (shakeCount > 0) shakeCount--;
+                        }, 2000);
+                    }
+                }
+            });
+        }
+
+        // Night Mode
+        function toggleNightMode() {
+            nightModeActive = !nightModeActive;
+            const btn = event.target;
+            btn.classList.toggle('active');
+            
+            if (nightModeActive) {
+                document.body.style.filter = 'brightness(0.85)';
+                showSuccessAlert('🌙 Night Safety Mode Enabled - Alert sensitivity increased');
+                updateSafetyStatus('moderate');
+            } else {
+                document.body.style.filter = 'brightness(1)';
+                showSuccessAlert('Night Mode Disabled');
+            }
+        }
+
+        // Travel Mode
+        function toggleTravelMode() {
+            travelModeActive = !travelModeActive;
+            const btn = event.target;
+            btn.classList.toggle('active');
+            
+            const indicator = document.getElementById('travelModeIndicator');
+            
+            if (travelModeActive) {
+                indicator.style.display = 'flex';
+                startLiveLocationTracking();
+                showSuccessAlert('🚗 Travel Mode Active - Sharing location with trusted contacts');
+                
+                // Add timeline entry
+                addTimelineEntry('Travel mode activated', 'Travel mode enabled with live location sharing');
+            } else {
+                indicator.style.display = 'none';
+                stopLiveLocationTracking();
+                showSuccessAlert('Travel Mode Disabled');
+                addTimelineEntry('Travel mode deactivated', 'Stopped location sharing');
+            }
+        }
+
+        // Live Location Toggle
+        function toggleLiveLocation() {
+            liveLocationActive = !liveLocationActive;
+            const btn = document.getElementById('locationToggle');
+            btn.classList.toggle('active');
+            
+            if (liveLocationActive) {
+                startLiveLocationTracking();
+                showSuccessAlert('📍 Live Location Sharing Started');
+            } else {
+                stopLiveLocationTracking();
+                showSuccessAlert('📍 Live Location Sharing Stopped');
+            }
+        }
+
+        function startLiveLocationTracking() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(function(position) {
+                    userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                        accuracy: position.coords.accuracy
+                    };
+                    console.log('📍 Location Update:', userLocation);
+                });
+            }
+        }
+
+        function stopLiveLocationTracking() {
+            userLocation = null;
+        }
+
+        // Silent Mode
+        function toggleSilentMode() {
+            silentModeActive = !silentModeActive;
+            const btn = event.target;
+            btn.classList.toggle('active');
+            
+            if (silentModeActive) {
+                showSuccessAlert('🔇 Silent Mode Active - SOS will be sent silently');
+            } else {
+                showSuccessAlert('🔇 Silent Mode Disabled');
+            }
+        }
+
+        // SOS Countdown
+        function startSOSCountdown() {
+            sosCountdownActive = true;
+            let countdown = 3;
+            const countdownDiv = document.getElementById('sosCountdown');
+            
+            countdownDiv.innerHTML = `
+                <div style="text-align: center; margin: 10px 0;">
+                    <div class="countdown-timer" id="countdownNumber">${countdown}</div>
+                    <div style="color: #ffaacc; font-size: 12px;">Tap to cancel</div>
+                </div>
+            `;
+            
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                document.getElementById('countdownNumber').textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownDiv.innerHTML = '';
+                    triggerSOS();
+                    sosCountdownActive = false;
+                }
+            }, 1000);
+            
+            countdownDiv.onclick = () => {
+                clearInterval(countdownInterval);
+                countdownDiv.innerHTML = '';
+                sosCountdownActive = false;
+                showSuccessAlert('⏱️ SOS Cancelled');
+            };
+        }
+
+        // Enhanced SOS with all features
+        function triggerSOS() {
+            if (!currentUser) {
+                alert('Please login first');
+                return;
+            }
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    const sosData = {
+                        userId: currentUser.userId,
+                        latitude: latitude,
+                        longitude: longitude,
+                        timestamp: new Date(),
+                        silentMode: silentModeActive,
+                        nightMode: nightModeActive,
+                        travelMode: travelModeActive
+                    };
+
+                    console.log('🆘 SOS TRIGGERED!', sosData);
+                    console.log('📱 Emergency SMS sent to all contacts');
+                    console.log('📞 Police/Ambulance alerted with location');
+                    console.log('🔔 Trusted network notified');
+                    
+                    if (!silentModeActive) {
+                        playSOSAlert();
+                    }
+
+                    showSuccessAlert('🆘 SOS ACTIVATED! Emergency contacts alerted with your location.');
+                    addIncident('🆘 SOS Emergency', 'active', latitude, longitude);
+                    updateSafetyStatus('danger');
+                    addTimelineEntry('SOS Triggered', `Emergency alert sent from ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+                    
+                    // Update all emergency contacts
+                    updateAllContacts();
+                });
+            } else {
+                showSuccessAlert('🆘 SOS SENT! (Location unavailable)');
+                updateSafetyStatus('danger');
+            }
+        }
+
+        function playSOSAlert() {
+            // Visual pulse effect
+            const sosBtn = document.getElementById('sosButton');
+            sosBtn.style.animation = 'none';
+            setTimeout(() => {
+                sosBtn.style.animation = '';
+            }, 50);
+        }
+
+        // Quick call function
+        function quickCall(number, service) {
+            showSuccessAlert(`📞 Dialing ${service} (${number})...`);
+            addTimelineEntry(`Called ${service}`, `Emergency call to ${number} initiated`);
+        }
+
+        // Update Safety Status Card
+        function updateSafetyStatus(status) {
+            const statusEmoji = document.getElementById('statusEmoji');
+            const statusLabel = document.getElementById('statusLabel');
+            const statusDetail = document.getElementById('statusDetail');
+            
+            if (status === 'safe') {
+                statusEmoji.textContent = '✓';
+                statusEmoji.className = 'status-indicator status-safe';
+                statusLabel.textContent = 'You Are Safe';
+                statusLabel.style.color = 'var(--success)';
+                statusDetail.innerHTML = '✓ No incidents reported<br>✓ Police nearby<br>✓ Community verified';
+                document.getElementById('riskScore').textContent = '85%';
+                document.getElementById('riskMeter').style.width = '85%';
+            } else if (status === 'moderate') {
+                statusEmoji.textContent = '!';
+                statusEmoji.className = 'status-indicator status-moderate';
+                statusLabel.textContent = 'Moderate Risk';
+                statusLabel.style.color = 'var(--warning)';
+                statusDetail.innerHTML = '⚠ 2 reports nearby<br>⚠ Be alert<br>⚠ Share location';
+                document.getElementById('riskScore').textContent = '55%';
+                document.getElementById('riskMeter').style.width = '55%';
+            } else if (status === 'danger') {
+                statusEmoji.textContent = '⚠';
+                statusEmoji.className = 'status-indicator status-danger';
+                statusLabel.textContent = 'High Risk - SOS Active';
+                statusLabel.style.color = 'var(--danger)';
+                statusDetail.innerHTML = '🆘 Emergency Mode Active<br>📍 Location Shared<br>👥 Contacts Alerted';
+                document.getElementById('riskScore').textContent = '15%';
+                document.getElementById('riskMeter').style.width = '15%';
+            }
+        }
+
+        // Personalized Safety Tips
+        function loadSafetyTips() {
+            const tipsContainer = document.getElementById('tipsContainer');
+            const hour = new Date().getHours();
+            
+            let tips = [];
+            
+            if (hour >= 18 || hour < 6) {
+                tips = [
+                    { icon: '🌙', title: 'Night Safety', desc: 'Avoid isolated areas. Use well-lit routes with foot traffic.' },
+                    { icon: '📍', title: 'Share Location', desc: 'Let someone know your whereabouts and expected arrival time.' },
+                    { icon: '📱', title: 'Keep Phone Ready', desc: 'Ensure your phone is charged. Keep emergency contacts accessible.' },
+                    { icon: '🚕', title: 'Verified Transport', desc: 'Use registered cabs or trusted transport services.' }
+                ];
+            } else {
+                tips = [
+                    { icon: '🗺️', title: 'Plan Your Route', desc: 'Check weather and traffic before traveling.' },
+                    { icon: '👥', title: 'Travel with Others', desc: 'Avoid solo travel during peak evening hours.' },
+                    { icon: '🆘', title: 'Know Emergency Contacts', desc: 'Keep police, hospital, and women helpline numbers ready.' },
+                    { icon: '⌚', title: 'Stay Alert', desc: 'Be aware of your surroundings at all times.' }
+                ];
+            }
+            
+            let html = '';
+            tips.forEach((tip, idx) => {
+                html += `
+                    <div class="list-item">
+                        <div>
+                            <div class="list-item-title">${tip.icon} ${tip.title}</div>
+                            <div class="list-item-meta">${tip.desc}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            tipsContainer.innerHTML = html;
+        }
+
+        // Timeline management
+        let timeline = [];
+
+        function addTimelineEntry(action, detail) {
+            const entry = {
+                action: action,
+                detail: detail,
+                time: new Date().toLocaleTimeString()
+            };
+            timeline.unshift(entry);
+            
+            const timelineContainer = document.getElementById('timelineContainer');
+            let html = '';
+            timeline.slice(0, 10).forEach((entry, idx) => {
+                html += `
+                    <div style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
+                        <div style="font-weight: 600; color: var(--primary);">${entry.time}</div>
+                        <div>${entry.action}</div>
+                        <div style="font-size: 11px; opacity: 0.7;">${entry.detail}</div>
+                    </div>
+                `;
+            });
+            timelineContainer.innerHTML = html || '<p style="color: #a0c4ff;">No activity yet</p>';
+        }
+
+        // Enhanced Contact Management
+        function addContact() {
+            const name = document.getElementById('contactName').value;
+            const phone = document.getElementById('contactPhone').value;
+            const relationship = document.getElementById('contactRelationship').value;
+
+            if (!name || !phone) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const contactsContainer = document.getElementById('contactsContainer');
+            const contactHTML = `
+                <div class="list-item">
+                    <div>
+                        <div class="list-item-title">👤 ${name}</div>
+                        <div class="list-item-meta">${relationship} • ${phone}</div>
+                    </div>
+                    <button class="btn btn-danger" onclick="removeContact(this)" style="padding: 6px 10px; font-size: 11px;">Remove</button>
+                </div>
+            `;
+
+            if (contactsContainer.textContent.includes('No emergency')) {
+                contactsContainer.innerHTML = contactHTML;
+            } else {
+                contactsContainer.innerHTML = contactHTML + contactsContainer.innerHTML;
+            }
+
+            // Update all contacts list
+            updateAllContacts();
+            closeModal('addContactModal');
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactPhone').value = '';
+            showSuccessAlert('✓ Contact added successfully!');
+            addTimelineEntry('Contact Added', `Added ${name} as emergency contact`);
+        }
+
+        function updateAllContacts() {
+            const allContactsContainer = document.getElementById('allContactsContainer');
+            const contacts = document.querySelectorAll('#contactsContainer .list-item');
+            
+            let html = '';
+            contacts.forEach(contact => {
+                html += contact.outerHTML;
+            });
+            
+            allContactsContainer.innerHTML = html || '<p style="color: #a0c4ff; text-align: center;">No contacts added yet</p>';
+        }
+
+        function removeContact(btn) {
+            btn.parentElement.parentElement.remove();
+            updateAllContacts();
+        }
+
+        function showHelp() {
+            showModal('helpModal');
+        }
+
+        // Enhanced Community Report
+        function createReport() {
+            const riskLevel = document.getElementById('reportRiskLevel').value;
+            const type = document.getElementById('reportType').value;
+            const description = document.getElementById('reportDescription').value;
+            const anonymous = document.getElementById('reportAnonymous').checked;
+
+            if (!description) {
+                alert('Please describe the concern');
+                return;
+            }
+
+            const report = {
+                riskLevel: riskLevel,
+                type: type,
+                description: description,
+                anonymous: anonymous,
+                location: userLocation || { lat: 28.6139, lng: 77.2090 },
+                timestamp: new Date(),
+                upvotes: 0
+            };
+
+            const communityContainer = document.getElementById('communityContainer');
+            const riskColor = riskLevel.toLowerCase();
+            const reportHTML = `
+                <div class="report-item">
+                    <div class="report-header">
+                        <span class="report-location">📍 ${report.location.lat.toFixed(4)}, ${report.location.lng.toFixed(4)}</span>
+                        <span class="risk-badge risk-${riskColor}">${riskLevel}</span>
+                    </div>
+                    <div style="font-weight: 500; margin-bottom: 5px; color: var(--primary);">Type: ${type}</div>
+                    <div class="report-description">${description}</div>
+                    <div style="font-size: 12px; color: #a0c4ff;">Reported ${anonymous ? 'Anonymously' : 'by ' + currentUser.name}</div>
+                    <div class="report-actions">
+                        <button onclick="upvoteReport(this)">👍 Upvote (0)</button>
+                        <button onclick="shareReport(this)">📢 Share</button>
+                    </div>
+                </div>
+            `;
+
+            if (communityContainer.textContent.includes('No reports')) {
+                communityContainer.innerHTML = reportHTML;
+            } else {
+                communityContainer.innerHTML = reportHTML + communityContainer.innerHTML;
+            }
+
+            closeModal('createReportModal');
+            document.getElementById('reportDescription').value = '';
+            showSuccessAlert('✓ Safety report submitted! Thank you for helping the community.');
+            addTimelineEntry('Report Created', `Reported ${type} - Risk Level: ${riskLevel}`);
+        }
+
+        function upvoteReport(btn) {
+            const votes = parseInt(btn.textContent.match(/\d+/)[0]) + 1;
+            btn.textContent = `👍 Upvote (${votes})`;
+        }
+
+        function shareReport(btn) {
+            showSuccessAlert('📢 Report shared with your network!');
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserSession();
+            getSafeZones();
+            loadCommunityReports();
+            loadSafetyTips();
+            
+            // Tab button event listeners
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Get the tab ID from onclick attribute
+                    const onclickAttr = this.getAttribute('onclick');
+                    const tabId = onclickAttr.match(/switchTab\('([^']+)'\)/)[1];
+                    switchTab(tabId);
+                });
+            });
+            
+            // Simulate real-time updates
+            setInterval(() => {
+                const randomSafetyStatus = ['safe', 'moderate'][Math.floor(Math.random() * 2)];
+                if (randomSafetyStatus === 'moderate' && Math.random() > 0.7) {
+                    updateSafetyStatus('moderate');
+                }
+            }, 30000);
+            
+            // Add initial timeline entry
+            addTimelineEntry('App Initialized', 'SafeCircle is ready to protect you');
+        });
+    </script>
+</body>
+</html>
