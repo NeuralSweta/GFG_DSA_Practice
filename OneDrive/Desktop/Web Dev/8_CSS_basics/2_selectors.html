@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors</title>
+    <style>
+        /* Element Selector
+         - selects all elements of a specific type */
+        div{
+            color: black;
+            background-color: rgb(247, 184, 183);
+        }
+        /* Class Selector
+         - selects all elements with a specific class attribute */
+        .red-text{
+            color: red;
+            background-color: rgb(17, 206, 190);
+        }
+        /*# ID Selector
+         - select all elements with a specific id attribute */
+        #blue-text{
+            color: blue;
+            background-color: rgb(238, 238, 24);
+        }
+        /* Child Selector */
+        div>p{
+            color: rgba(2, 60, 2, 0.44);
+            background-color: rgb(2, 114, 179);
+        }
+        /* Descendant Selector */
+        div p{
+            color: rgb(152, 3, 55);
+            background-color: rgba(8, 246, 36, 0.848);
+        }
+/* Universal Selector */
+        *{
+            margin: 0%;
+            padding: 0%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+     /* pseudo Selector */
+     a:visited{color: purple;}
+     a:link{color: orange;}
+     a:active{color: rgba(243, 4, 4, 0.768);}
+     a:link:hover {background-color: rgb(218, 25, 160);}
+     p:first-child{font-weight:bold;}
+    </style>
+</head>
+<body>
+    <div>I am a div</div>
+    <div>
+        <h3>CSS Selectors</h3>
+        <dl>
+            <dt>Element Selector:</dt>
+            <dd>selects all elements of a specific type</dd>
+        </dl>
+    </div>
+    <div class="red-text">I am another div</div>
+    <div>
+        <dl>
+            <dt>Class Selector:</dt>
+            <dd>selects all elements with a specific class attribute</dd>
+        </dl>
+    </div>
+    <div id="blue-text">
+        <dl>
+            <dt>ID Selector</dt>
+            <dd>select all elements with a specific id attribute</dd>
+        </dl>
+    </div>
+    <div>
+        <p>Child Selector example</p>
+        <dl>
+            <dt>Child Selector</dt>
+            <dd>selects all elements that are direct children of a specified element</dd>
+        </dl>
+    </div>
+    <div> <article>
+        <dl>
+            <dt><p>Descendant Selector</p></dt>
+            <dd><p>selects all elements that are descendants of a specified element.</p></dd>
+        </dl>
+        </article>
+    </div>
+    <div>
+        <p>Universal Selector Example</p>
+        <dl>
+            <dt>Universal Selector</dt>
+            <dd>selects all elements in a document.</dd>
+        </dl>
+    </div>
+    <div>
+        <dt>Pseudo Selector</dt>
+        <dl><dd>selects elements in a special state or specific part.</dd></dl>
+    </div>
+    <div><p>
+        <a href="https://www.google.com">Go to Google</a>
+        <a href="https://www.facebook.com">Go to Facebook</a>
+        <a href="https://www.instagram.com">Go to Instagram</a>
+    </p></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid black;
+            margin: 15px;
+            background-color: rgb(123, 191, 246);
+        }
+        .box1{color:yellow;}
+        .box2{color:red;}
+    </style>
+</head>
+<body>
+   <div class="box box1">I am box 1.</div> 
+   <div class="box box2">I am box 2.</div> 
+   <div>
+    <b>Margin collapse:</b> when two vertical margins meet, they combine into a single margin that is the larger of the two.
+   </div>
+   <div>
+    <b>Calculating total dimension of element:</b> width + padding + border + margin. <br>
+    <b>Total width</b>= width+ left padding+left border+ right border +left margin + right margin. <br>
+    <b>Total height</b>= height+ top padding+top border++top margin+ bottom border+ bottom margin.
+   </div>
+   <img src="box_model_pic.png" alt="box model diagram" width="400">
+</body>
+</html>

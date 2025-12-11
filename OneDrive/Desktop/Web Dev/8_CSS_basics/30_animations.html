@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animations</title>
+    <style>
+        .container{
+background-color: darkgreen;
+height: 80vh;
+width: 30vw;
+        }
+        .box{
+background-color: aqua;
+height: 45px;
+width: 34px;
+/* animation-name: SwetaAnimation;
+animation-duration: 3s;
+animation-iteration-count: 5;
+animation-timing-function: cubic-bezier(0.03, 0.88, 0.58, 1);
+animation-delay: 2s;
+animation-direction: alternate-reverse;
+animation-play-state: paused;
+*/
+
+/* animation: name duration timing-function delay iteration-count direction fill-mode; */
+/* animation: SwetaAnimation 3s ease-in-out 2s 1 backwards; */
+animation: SwetaAnimation 3s ease-in-out 2s 1;
+animation: Sweta2 3s ease-in-out 2s 1;
+}
+        @keyframes SwetaAnimation {
+            from{
+                background-color: red;
+            }
+            to{
+                background-color: yellow;
+                transform:translateX(1000px);
+
+            }
+        }
+            @keyframes Sweta2{
+0%{ transform: rotate(100deg); }
+20%{transform:rotate(200deg);}
+50%{transform:rotate(220deg);}
+80%{transform:rotate(300deg);}
+100%{transform:rotate(320deg);}
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            Box
+        </div>
+    </div>
+</body>
+</html>

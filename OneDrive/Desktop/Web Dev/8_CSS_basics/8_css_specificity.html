@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Specificity</title>
+    <style>
+        h1 { color: green; }
+        .yellow { color: yellow; }
+        .cred { color: red; }
+        .cpurple { color: purple; }
+        [data-x="a"] { color: orange; }
+        div {color: rgb(1, 1, 111) !important;}
+        /* a.harryclass.rohanclass[href]:hover{
+            color: pink;   [the specificity of this selector is 1+10+10+10+10=41 (due to element a, class ,class, href(attribute selector,) , pseudoclass]}*/
+        
+        /* Important >Inline style > ID selector > Class/attribute selector > Element selector */
+        b{color: rgb(229, 28, 112)}
+        h3{color: rgb(3, 201, 201)}
+        a{color: rgb(198, 11, 11)   }
+        i{color: brown }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class="yellow cred cpurple" data-x="a">CSS Specificity</h1>
+        <h3>Cascade Algorithm:</h3>
+    </div>
+    <div>
+        CSS stands for Cascading Stylesheets. The cascade is the algorithm for solving conflicts where multiple CSS rules apply to an HTML element. It's the reason that the text of the button styled with the above CSS will be <u><i>purple</i></u>, even though there are multiple conflicting color declarations.  <br>
+
+Understanding the cascade algorithm helps you understand how the browser resolves conflicts like this. <br>
+<i style="color: blue">The cascade algorithm has 4 distinct stages.</i> <br>
+
+<b>1.Position and order of appearance: </b>the order in which your CSS rules appear (if same type eg:class here) <br>
+<b>2.Specificity:</b>an algorithm that determines which CSS selector has the strongest match.If two rules have the same specificity, the last one declared wins.eg: purple here. <b style="color: rgb(17, 245, 17)">(inline > ID > class > element > universal) </b><br>
+<b>3.Origin:</b>the order in which CSS appears and where it comes from, whether that is a browser style, CSS from a browser extension, or your authored CSS <br>
+<b>4.Importance:</b> some CSS rules are weighted more heavily than others, especially with the !important rule type <br>
+<i>An inline style attribute with CSS declared in it will override all other CSS, regardless of its position, unless a declaration has !important defined. </i>
+    </div>
+    <div> <b>Specificity Hierarchy -</b>
+
+<b><i style="color:rgb(88, 11, 183)"><u>Inline Style > ID Selector > Class/Attribute/Pseudo-class > Element Selector > Universal Selector</u></i></b></div>
+<div>
+   <b> Specificity Calculation </b><br>
+To calculate specificity, assign a value to each part of the selector:<br>
+
+<i>Universal Selector:</i>0 <br>
+<i>Element selectors and pseudo-elements:</i> 1 <br>
+<i>Class selectors, attribute selectors, and pseudo-classes: </i>10 <br>
+<i>ID selectors:</i> 100 <br>
+<i>Inline styles:</i> 1000
+</div>
+<div>Importance <br>
+The !important flag in CSS is used to give a particular style rule the highest level of importance, overriding any other competing styles. </div>
+    <div> <a target="blank" href="https://www.codewithharry.com/tutorial/css-specificity">Link for understand css-specificity</a></div>
+</body>
+</html>

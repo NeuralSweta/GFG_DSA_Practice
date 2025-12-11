@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Media Query</title>
+    <style>
+        body{background-color: rgba(255, 0, 0, 0.858);}
+        @media screen and (orientation:landscape){
+            body{border:5px solid rgba(0, 0, 255, 0.858);}
+        }
+        @media only screen and (max-width: 455px){
+            body{background-color: rgba(0, 255, 0, 0.858);}
+        }
+    /*media not|only media-type and (expressions) CSS-Code*/
+    .boxes{
+        display: flex;}
+        /* flex-direction: column;  */
+    .box{
+        width: 344px;
+        height: 344px;
+        background-color: aqua;
+        margin:3px;
+        padding: 3px;
+       
+    }
+        </style>
+</head>
+<body>
+    <div>
+        Hey I am a responsive page.
+    </div>
+    <div class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+    </div>
+</body>
+</html>

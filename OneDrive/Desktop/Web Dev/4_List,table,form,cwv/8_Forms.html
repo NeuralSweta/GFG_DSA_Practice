@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <h2>Form-apply for web-dev course</h2>
+    <form action="post">
+    <!-- action- 2 type: get or post -->
+     <div>
+     <label for="username">Enter Your Username</label>
+     <input type="text" id="username" placeholder="Enter Username Here">
+    </div>
+    <div>
+        <label for="Gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+    </div>
+    <div>
+        <label for="Fruits">Select Your Favourite fruit:</label><br>
+        <input type="checkbox" name="Fruit" id="Apple" value="Apple">
+        <label for="Apple">Apple</label><br>
+        <input type="checkbox" name="Fruit" id="Berry" value="Berry">
+        <label for="Berry">Berry</label><br>
+        <input type="checkbox" name="Fruit" id="Litchi" value="LitchiLitchi">
+        <label for="Litchi">Litchi</label>
+
+    </div>
+    <div>
+        <textarea name="comment" rows="4" cols="20">Enter Your Comment Here:</textarea>
+    </div>
+    <div>
+        <label for="Name">Select a place</label>
+        <select name="Name" id="Name">Select a Place Name
+        <option value="Delhi">Delhi</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Kolkata">Kolkata</option>
+    </select>
+    </div>
+    </form>
+
+   <h3 style="color: rgb(227, 40, 71);"> Form Elements</h3>
+We use various input types and buttons inside a form as form elements.
+
+Text Input
+<input type="text" name="username" placeholder="Enter Username">
+
+Password Input
+<input type="password" name="password" placeholder="Enter Password">
+
+Checkbox
+<input type="checkbox" name="agree" value="yes"> I agree
+
+Radio Button
+<input type="radio" name="gender" value="male"> Male<br>
+<input type="radio" name="gender" value="female"> Female
+
+Submit Button
+<input type="submit" value="Submit">
+
+Button
+<button type="button">Click Me</button>
+
+Select (Dropdown) List
+<select name="country">
+    <option value="usa">United States</option>
+    <option value="canada">Canada</option>
+</select>
+
+Textarea
+<textarea name="comments" rows="4" cols="50">Enter comments here</textarea>
+
+File Input
+<input type="file" name="fileupload">
+
+Range Input
+<input type="range" name="volume" min="0" max="100">
+
+Number Input
+<input type="number" name="quantity" min="1" max="10">
+
+Email Input
+<input type="email" name="email" placeholder="Enter Email">
+
+Search Input
+<input type="search" name="query" placeholder="Search">
+
+URL Input
+<input type="url" name="website" placeholder="Enter URL">
+
+Date Input
+<input type="date" name="birthdate">
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container red bg-green">
+        <div class="box" style="display: flex;"data-createdby="Sweta" data-conceptby="Shivam">hey I am a Box</div>
+    </div>
+    <script>
+        let div= document.createElement("div");
+        div.innerHTML="I have been inserted by java script."
+        div.setAttribute("class","created");
+        document.querySelector(".container").append(div)
+
+        //
+        let cont= document.querySelector(".container")
+        cont.innerAdjacentHTML("afterend","<b>I am after Html")
+
+        //console
+        document.querySelector(".box")
+        document.querySelector(".box").innerHTML
+        document.querySelector(".container").innerHTML
+        document.querySelector(".container").innerText
+        document.querySelector(".box").hasAttribute("style")
+        document.querySelector(".box").getAttribute("style")
+        document.querySelector(".box").setAttribute("style","display:inline")
+
+        document.querySelector(".box").dataset //createdby: 'Sweta'
+
+        //
+        document.querySelector(".container").classList
+        document.querySelector(".container").className
+        document.querySelector(".container").classList.add("Sweta")
+        document.querySelector(".container").classList.remove("red")
+        document.querySelector(".container").classList.toggle("red")
+
+        //Important
+        document.designMode="on"
+    </script>
+</body>
+</html>

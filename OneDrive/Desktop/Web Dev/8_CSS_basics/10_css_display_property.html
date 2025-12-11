@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Properties</title>
+    <style>
+    *{margin:0;
+      padding:0;}
+    .box{
+        border: 2px solid rgb(221, 103, 122);
+        padding: 45px;
+        margin:23px;
+        width: 300px;
+        height: 150px;
+        background-color: aqua;
+        /* display: block;  default for div */
+        /* display: inline; */
+        /* display: none; */
+        display: inline-block;
+        /* visibility: hidden; /*block remove but space remain */
+        visibility: visible;
+        box-sizing: border-box;
+        /* display: flex;*/
+        /*justify-content: center; */
+    }</style>
+</head>
+<body>
+    <div class="box">I am a box.</div>
+    <div class="box">also a nice box.</div>
+    <span>I am a good</span>
+    <span>girl.</span>
+    <div style="color:red"><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">Link for display properties</a></div>
+</body>
+</html>

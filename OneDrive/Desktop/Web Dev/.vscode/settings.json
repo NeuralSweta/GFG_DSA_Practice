@@ -1,0 +1,7 @@
+{
+    "livePreview.host": "localhost",
+    "livePreview.httpHeaders": {
+        "Accept-Ranges": "bytes"
+    },
+    "livePreview.defaultPreviewPath": "/8_CSS_basics/css_variables.html"
+}

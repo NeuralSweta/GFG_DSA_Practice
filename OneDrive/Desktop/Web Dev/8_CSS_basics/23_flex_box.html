@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Flex Box </title>
+    <style>
+    .container{
+        flex-grow: 1;
+        border:2px solid red;
+        background-color: antiquewhite;
+        height:80vh;
+        display:flex;
+        justify-content: center;
+        /* align-items: center;  */
+        /* for 1 line*/
+        /* flex-direction: column-reverse; */
+        flex-wrap: wrap;
+        align-content: center;
+        /* no justify-content in flexbox */
+        flex-flow: row wrap;
+        gap: 30px;
+        /* row-gap: 50px; */
+    }
+    .item{
+        height:100px;
+        width:100px;
+        border: 2px solid black;
+        background-color:palevioletred;
+        /* margin:4px; */
+    }
+    .item2{flex-grow: 2;/*it will take twice space of other items*/
+    /* flex-shrink:2; */ 
+    /*it can shrink to half during scroll */
+    /* align-self: flex-start; */
+    }
+    .order-1{order:1;}
+    .order-2{order:2;}
+    .order-3{order:50;}
+    .order-4{order:100;
+    background-color: aqua;}
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <img src="flexbox_sizing.img.png" alt="flexbox_sizing">
+            <div class="item order-1 "></div>
+            <div class="item2 order-4"></div>
+            <div class="item order-3"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </main>
+</body>
+</html>

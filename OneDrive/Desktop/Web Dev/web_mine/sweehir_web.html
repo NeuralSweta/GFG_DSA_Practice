@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweehir- A Love Story</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fad0c4 100%);
+            height:100vh;
+            display: flex;
+            justify-content:center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .greeting {
+            font-size: 2.5rem;
+            color: #d63384;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            border-right: 2px solid white;
+            white-space:nowrap;
+            overflow: hidden;
+            width:0;
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: typing 4s steps(30, end) forwards, blink 0.7s step end infinite;
+        }
+
+        .heart-container {
+            position: relative;
+            margin: 2rem 0;
+            opacity: 0;
+            animation: fadeIn 3s ease-out 2s forwards;
+        }
+
+        .heart {
+            width: 300px;
+            height: 270px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 150px;
+            height: 240px;
+            position: absolute;
+            left: 75px;
+            transform: rotate(-45deg);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            border-radius: 150px 150px 0 0;
+            transform-origin: 0 100%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .heart-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 10;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .photo-container {
+            margin: 3rem 0;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 4s forwards;
+        }
+
+        .photo-frame {
+            width: 300px;
+            height: 300px;
+            border: 10px solid #f3c41c;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #d63384;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-frame::before {
+            content: '💕';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            animation: heartbeat 0.5s infinite;
+        }
+
+        .love-story {
+            font-size: 2.5rem;
+            color: #6f42c1;
+            text-align: center;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 5s forwards;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            max-width: 800px;
+            line-height: 1.3;
+        }
+
+        /* Rose Petal Animation */
+        .rose-petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(ellipse at center, #ff6b9d 0%, #ff8a9b 70%);
+            border-radius: 50% 10% 50% 10%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: falling 10s linear infinite;
+        }
+
+        .rose-petal:nth-child(2n) {
+            background: radial-gradient(ellipse at center, #ff9a9e 0%, #fecfef 70%);
+            animation-duration: 7s;
+        }
+
+        .rose-petal:nth-child(3n) {
+            background: radial-gradient(ellipse at center, #ff6b6b 0%, #ee5a6f 70%);
+            animation-duration: 8s;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            top:-50px;
+            font-size: 24px;
+            opacity: 0.8;
+            color: rgba(255, 182, 193, 0.7);
+            animation: float linear infinite ;
+        }
+
+        @keyframes fall
+        {
+            0%,{
+                opacity:1;
+                transform:translateX(-50px);
+             } 100% {
+                opacity:0;
+             transform: translateY(100vh) rotate(0deg); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .greeting { font-size: 2rem; }
+            .heart { width: 250px; height: 220px; }
+            .heart-text { font-size: 1.5rem; }
+            .photo-frame { width: 250px; height: 250px; }
+            .love-story { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        alert("A little corner of love, just for you two!")
+        alert("Nikhil Vats")
+        alert("Sweety jha")
+
+        
+
+    </script>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <h1 class="greeting" id="greeting">Hello Sweety & Mihir! 💕</h1>
+        
+        <div class="heart-container">
+            <div class="heart">
+                <div class="heart-text">Sweehir<br>💖</div>
+            </div>
+        </div>
+        
+        <div>
+                <img src="Sweehir pic.jpg" height="500"widht="10"></div>
+                <div>
+                <audio autoplay ,loop>
+                    <source src="Preet Re Song.mp3" type="audio/mpeg"></source>
+                </audio>
+        
+            </div>
+            
+        <div class="love-story">
+            When Tikhi Mirchi met Mithi Pudikiya 🌶️💕🍯
+    </div>
+
+    <script>
+        // Greeting animation with sound effect simulation
+        function showGreeting() {
+            const greeting = document.getElementById('greeting');
+            setTimeout(() => {
+                greeting.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    greeting.style.transform = 'scale(1)';
+                }, 200);
+            }, 1000);
+        }
+
+        // Rose petal shower
+        function createRosePetal() {
+            const petal = document.createElement('div');
+            petal.className = 'rose-petal';
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDelay = Math.random() * 2 + 's';
+            petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(petal);
+            
+            setTimeout(() => {
+                petal.remove();
+            }, 8000);
+        }
+
+        // Continuous rose petal shower
+        function startRosePetalShower() {
+            setInterval(createRosePetal, 300);
+        }
+
+        // Create floating hearts background
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heartSymbols = ['💖', '💕', '💗', '💘', '💝','😙','😘','😊','🥰'];
+            
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = i* (100/30) + '%';
+                heart.style.top = i * (100/30) + '%';
+                heart.style.animationDelay = Math.random() * 5+ 's';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Heart pulse effect
+        function pulseHeart() {
+            const heart = document.querySelector('.heart');
+            setInterval(() => {
+                heart.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    heart.style.transform = 'scale(1)';
+                }, 500);
+            }, 3000);
+        }
+
+        // Interactive click effects
+        document.addEventListener('click', (e) => {
+            // Create sparkles on click
+            for (let i = 0; i < 15; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = e.clientX + (Math.random() - 0.5) * 100 + 'px';
+                sparkle.style.top = e.clientY + (Math.random() - 0.5) * 100 + 'px';
+                sparkle.style.position = 'fixed';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+        });
+
+        // Initialize all animations
+        window.addEventListener('load', () => {
+            showGreeting();
+            setTimeout(startRosePetalShower, 1000);
+            createFloatingHearts();
+            setTimeout(pulseHeart, 3000);
+            
+            // Continuous sparkles
+            setInterval(createSparkle, 1500);
+        });
+
+        // Add romantic messages on scroll
+        let messageIndex = 0;
+        const romanticMessages = [
+            "Love is in the air! 💕",
+            "Two hearts, one soul! 💖",
+            "Perfect match made in heaven! ✨",
+            "Love story begins... 📖💕"
+        ];
+
+        window.addEventListener('scroll', () => {
+            if (Math.random() > 0.8) {
+                const message = document.createElement('div');
+                message.style.position = 'fixed';
+                message.style.top = '20px';
+                message.style.right = '20px';
+                message.style.background = 'rgba(255, 255, 255, 0.9)';
+                message.style.padding = '10px 20px';
+                message.style.borderRadius = '25px';
+                message.style.color = '#d63384';
+                message.style.fontWeight = 'bold';
+                message.style.zIndex = '1000';
+                message.style.animation = 'fadeIn 1s ease-out';
+                message.innerHTML = romanticMessages[messageIndex % romanticMessages.length];
+                document.body.appendChild(message);
+                
+                messageIndex++;
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables</title>
+    <style>
+        :root {
+            /* global variable declared here*/
+            --color: rgb(240, 28, 145);
+            --seccolor: rgb(70, 153, 248);
+            --tercolor: yellow;
+            --defpad: 23px;
+            --defop: 0.2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            background-color: var(--color);
+        }
+
+        .container {
+            background-color: var(--seccolor);
+        }
+
+        ul {
+            display: flex;
+        }
+
+        ul li {
+            list-style: none;
+            padding: var(--defpad);
+            opacity: var(--defop);
+            border: 2px solid var(--color);
+        }
+
+        ul li:first-child {
+            background-color: var(--color, brown);
+        }
+
+        ul li:nth-child(3) {
+            --tercolor: rgba(234, 159, 19, 0.858);
+            /* local variable, only applicable inside this selector */
+            background-color: var(--tercolor);
+        }
+        b{color:black;}
+        
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+            <li>Email</li>
+            <li>Others</li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>CSS Varibles...</h2>
+        CSS variables (also called custom properties) are reusable values defined with a name, starting with --, that
+        you can use throughout your CSS. They make it easy to update and manage colors, sizes, and other values in one
+        place. <br>
+        <i>Here are some common terms for which you can create CSS variables:</i> <br>
+        <b>Colors </b>(e.g., --primary-color, --secondary-color, --text-color) <br>
+        <b>Font sizes</b> (e.g., --heading-size, --body-size) <br>
+        <b>Spacing </b>(e.g., --padding, --margin, --gap) <br>
+        <b>Border radius </b>(e.g., --button-radius) <br>
+        <b>Z-index values </b>(e.g., --modal-z) <br>
+        <b>Box shadows </b>(e.g., --card-shadow)
+    </div>
+</body>
+
+</html>
